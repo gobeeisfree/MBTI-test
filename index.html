@@ -28,7 +28,7 @@
           aria-valuemin="0"
           aria-valuemax="100"></div>
       </div>
-      <h2 class="text-center mt-5">문제</h2>
+      <h2 id="title" class="text-center mt-5">문제</h2>
       <input id="type" type="hidden" value="EI" />
       <button id="A" type="button" class="btn btn-primary mt-5"></button>
       <button id="B" type="button" class="btn btn-primary mt-5"></button>
@@ -47,15 +47,41 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"></script>
     <script>
+      var num = 1;
+      var q = {
+        1: { title: "문제 1번", type: "EI", A: "E", B: "I" },
+        2: { title: "문제 2번", type: "EI", A: "E", B: "I" },
+        3: { title: "문제 3번", type: "EI", A: "E", B: "I" },
+      };
+
+      // 시작 버튼 클릭할 때
       function start() {
         $(".start").hide();
         $(".question").show();
+        next();
       }
+
+      // 해당 타입에 맞는 input에 위 버튼을 클릭한 만큼 value 저장 하고 다음으로 넘어감
       $("#A").click(function () {
         var type = $("#type").val();
         var preValue = $("#" + type).val();
         $("#" + type).val(parseInt(preValue) + 1);
+        next();
       });
+
+      // 아래 버튼을 눌렀을 때 다음으로 넘어가는 기능
+      $("#B").click(function () {
+        next();
+      });
+
+      // 버튼을 클릭했을 때 실행되는 함수
+      function next() {
+        $("#title").html(q[num]["title"]); // 문제 번호에 맞게 제목 변경
+        $("#type").val(q[num]["type"]); // 점수 저장을 위한 input의 value를 해당 유형으로 변경
+        $("#A").html(q[num]["A"]); // 위 쪽 버튼을 해당 유형으로 변경
+        $("#B").html(q[num]["B"]); // 아래 버튼을 해당 유형으로 변경
+        num++;
+      }
     </script>
   </body>
 </html>
