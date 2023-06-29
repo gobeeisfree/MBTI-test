@@ -1,8 +1,8 @@
-.start {
+article {
   display: flex;
   flex-flow: column nowrap;
 }
 
-.question {
+/* .question {
   display: none;
-}
+} */
