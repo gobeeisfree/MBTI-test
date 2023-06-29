@@ -12,18 +12,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="container">
-    <!-- <article class="start">
+    <article class="start">
       <h1 class="mt-5 text-center">나랑 꼭 닮은 세렝게티 동물은?</h1>
       <button type="button" class="btn btn-primary mt-5" onclick="start()">
         테스트 시작하기
       </button>
-    </article> -->
+    </article>
     <article class="question">
       <div class="progress mt-5">
         <div
           class="progress-bar"
           role="progressbar"
-          style="width: 25%"
+          style="width: calc(100 / 12 * 1%)"
           aria-valuenow="25"
           aria-valuemin="0"
           aria-valuemax="100"></div>
@@ -76,6 +76,7 @@
 
       // 버튼을 클릭했을 때 실행되는 함수
       function next() {
+        $(".progress-bar").attr("style", "width: calc(100/12*" + num + "%)");
         $("#title").html(q[num]["title"]); // 문제 번호에 맞게 제목 변경
         $("#type").val(q[num]["type"]); // 점수 저장을 위한 input의 value를 해당 유형으로 변경
         $("#A").html(q[num]["A"]); // 위 쪽 버튼을 해당 유형으로 변경
